@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>مثالهای مبانی‌ برنامه‌نویسی و کامپیوتر با زبان C</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta
+      content="درس مبانی‌ کامپیوتر و برنامه‌نویسی با زبان C"
+      name="description"
+    />
+    <meta
+      content="برنامه‌نویسی,سی,الگوریتم,زبان برنامه نویسی سی,برنامه نویسی,الگوریتم در زبان سی,مبانی برنامه نویسی,مبانی کامپیوتر"
+      name="keywords"
+    />
+    <meta name="author" content="سحر میرزابیگی" />
+    <link rel="stylesheet" href="css/semantic.min.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="js/semantic.min.js"></script>
+    <link rel="stylesheet" href="css/highlights/styles/tomorrow.css" />
+    <script src="js/highlight.pack.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <style type="text/css">
+      @font-face {
+        font-family: "customFont";
+        src: url(fonts/Mirza.woff);
+      }
+
+      @font-face {
+        font-family: "customFont";
+        src: url(fonts/Mirza-Bold.woff);
+        font-weight: bold;
+      }
+
+      .custom-font {
+        font-family: "customFont";
+      }
+
+      body {
+        background-color: #ffffff;
+      }
+
+     
+      pre {
+        margin: 0px;
+      }
+      code {
+        padding: 0px;
+      }
+      
+      #examplesMenu > a.item {
+        text-align: right;
+        font-family: customFont;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="custom-font ui text top attached container">
+      <div
+        id="intro"
+        class="ui top attached right aligned segment"
+        style="border-radius: 0px;margin-top:50px"
+      >
+        <span class="custom-font">
+          سلام سحر میرزابیگی هستم <br />
+          سعی کردم یه سری از الگوریتم&zwnj;های پایه&zwnj;ای که معمولا در درس
+          مبانی برنامه&zwnj;نویسی مطرح میشه رو در قالب کدهایی با زبان سی در این
+          صفحه گردآوری کنم
+          <br />
+        اگر سوالی در این زمینه داشتین خوشحال میشم باهم در ارتباط باشیم ادرس وب سایت خودم رو تو لینک زیر واستون گذاشتم
+          <a target="_blank" href="https://sahradesign.ir"
+            >sahradesign.ir</a
+          >
+        </span>
+      </div>
+      <div id="examplesMenu" class="ui top attached right aligned segment">
+        <a class="item" href="#1">سوال1)برنامه‌اي بنويسيد كه عناصر آرايه‌ا‌ي را از كاربر دريافت نموده، سپس عناصر زوج و فرد آن‌را در دو آرایه دیگر قرار دهد
+        </a>
+      </div>
+        <div id="examplesMenu" class="ui top attached right aligned segment">
+        <a class="item" href="#2"> 
+سوال 2)برنامه‌اي بنويسيد كه يك ماتريس 5 در5 را از ورودي خوانده تشخيص دهد كه نسبت به قطر اصلي متقارن است يا خير      </a>
+        </div>
+        <div id="examplesMenu" class="ui top attached right aligned segment">
+        <a class="item" href="#3">
+         سوال3) برنامه‌اي بنويسيد كه يك ماتريس 3 در5 را از ورودي خوانده، سپس كوچك‌ترين عدد در هر سطر را همراه با مكان آن در خروجي چاپ نمايد
+        </a>
+      </div>
+      <div id="examplesMenu" class="ui top attached right aligned segment">
+        <a class="item" href="#4">
+          سوال 4)برنامه‌اي بنويسيد كه دو ماتريس 2 در4 را خوانده، سپس مجموع عناصر متناظر دو آرايه‌ را در ماتريس ديگري قرار داده و آن را در خروجي چاپ نمايد.
+
+        </a></div>
+        <div id="examplesMenu" class="ui top attached right aligned segment">
+        <a class="item" href="#5">
+          سوال 5( برنامه‌اي بنويسيد كه دو ماتريس 2 در4 و 3 در2 را خوانده، حاصل‌ضرب آن‌ها را در ماتريس سومي قرار داده و چاپ نمايد.
+
+          </a></div>
+          <div id="examplesMenu" class="ui top attached right aligned segment">
+        <a class="item" href="#6">
+          سوال 6(
+           برنامه‌اي بنويسيد كه ماتريس 3در5  خوانده و آن را به تابعي ارسال كند سپس تابع ترانهاده‌ي آن را پيدا كرده و در خروجي چاپ نمايد.
+          </a></div>
+          <div id="examplesMenu" class="ui top attached right aligned segment">
+        <a class="item" href="#7">
+          سوال 7(برنامه‌اي بنويسيد كه يك ماتريس 4در7 را توسط تابعي خوانده سپس توسط تابع ديگري بزرگترين عدد در هر ستون را همراه با مكان آن در خروجي چاپ نمايد
+        </a></div>
+        <div id="examplesMenu" class="ui top attached right aligned segment">
+                  <a class="item" href="#8">
+          سوال8) برنامه‌اي بنويسيد كه ماتريس 4در4  را از ورودي دريافت نموده، مشخص نمايد ماتريس ورودي بالا مثلثي است يا خير
+        </a></div>
+        <div id="examplesMenu" class="ui top attached right aligned segment">
+        <a class="item" href="#9">
+          سوال 9(
+            برنامه‌اي بنويسيد كه توسط يك ماتريس 5در5 مثلث خيام- پاسكال را تا سطر پنجم محاسبه و چاپ نمايد.
+
+        </a></div>
+        <div id="examplesMenu" class="ui top attached right aligned segment">
+        <a class="item" href="#10">
+          سوال10 برنامه‌اي بنويسيد كه عناصر يك ماتريس 20 عنصري را از كاربر دريافت كرده، سپس عنصري كه بيشتر از بقيه‌ي عناصر  تكرار شده است را مشخص و در خروجي نشان دهد)
+          </a></div>
+          <div id="examplesMenu" class="ui top attached right aligned segment">
+        <a class="item" href="#11">سوال 11 برنامهاي بنویسید که با روش مرتبسازي حبابی عناصر یک آرایه را بهصورت نزولی مرتب نماید </a></div>
+        <div id="examplesMenu" class="ui top attached right aligned segment">
+        <a class="item" href="#12">سوال 12  برنامهاي بنویسید که با روش مرتبسازي انتخابی عناصر یک آرایه را بهصورت نزولی مرتب نماید.</a></div>
+        <div id="examplesMenu" class="ui top attached right aligned segment">
+          <a class="item" href="#13"
+          >سوال 13  برنامه‌ای بنویسید که تعداد سطر و ستون یک مستطیل را از کاربر دریافت، سپس آن را در خروجی چاپ نماید. 
+        </a></div>
+          <div id="examplesMenu" class="ui top attached right aligned segment">
+        
+        <a class="item" href="#14"
+          >سوال 14 برنامه‌ای بنویسید که جدول‌ضرب ده‌دهی را در خروجی به فرم مناسبی چاپ نماید.
+          </a>
+          </div>
+          <div id="examplesMenu" class="ui top attached right aligned segment">
+          <a class="item" href="#15">
+           سوال 15 برنامه‌اي بنويسيد كه فاكتوريل تعداد مشخصي عدد را محاسبه نمايد.
+   
+          </a></div>
+          <div id="examplesMenu" class="ui top attached right aligned segment">
+            <a class="item" href="#16"
+              >سوال 16 برنامه‌اي بنويسيد كه تا جمله‌ي  ان اُم سري فيبوناچي به‌طور بازگشتي محاسبه نمايد.</a
+            ></div>
+            <div id="examplesMenu" class="ui top attached right aligned segment">
+              <a class="item" href="#17">سوال 17 برنامه‌اي بنويسيد كه با استفاده از تابع برنامه‌اي بنويسيد كه مثلث خيام- پاسكال را تا سطر  ان ام محاسبه و چاپ نمايد</a>
+            </div>
+            <div id="examplesMenu" class="ui top attached right aligned segment">
+              <a class="item" href="#18">سوال 18 برنامه‌اي بنويسيد كه توسط تابع ووید اف سه مقدار اعشاري را از ورودي بخواند، سپس تابع مجموع، حاصل‌ضرب و ميانگين اين سه مقدار را محاسبه نموده تا در برنامه‌ي اصلي اين مقادير چاپ شوند.
+              </a></div>
+              <div id="examplesMenu" class="ui top attached right aligned segment">
+                <a class="item" href="#19"
+          >سوال 19 برنامه‌اي بنويسيد كه منوي شامل پنج انتخاب مجزا را در صفحه‌ نشان دهد و از كاربر بخواهد يكي از گزينه‌هاي منو را انتخاب نمايد، سپس با پيغامي مناسب گزينه‌ي انتخابي كاربر را مشخص نمايد. </a
+        ></div>
+        <div id="examplesMenu" class="ui top attached right aligned segment">
+          <a class="item" href="#20"
+          >سوال 20 برنامه‌اي بنويسيد كه از كاربر عددي را دريافت كند، اگر عدد زوج، مثبت و کوچک‌تر از 100 بود پيغام "smile" ، اگر عدد ورودي فرد، منفي و بزرگ‌تر از 50- بود پيغام "frown" و در غير این صورت پيغام "not bad" را چاپ نمايد.
+          </a
+        >
+        </div>
+        <div id="examplesMenu" class="ui top attached right aligned segment">
+          <a class="item" href="#21"
+          >سوال 21 برنامه‌اي بنويسيد كه ضرايب يك معادله‌ي درجه‌دو را از كاربر دريافت نموده، سپس جواب‌ها معادله را محاسبه و چاپ نمايد.</a
+        >
+        </div>
+        <div id="examplesMenu" class="ui top attached right aligned segment">
+          <a class="item" href="#22"
+          >سوال 22 برنامه‌اي بنويسيد كه يك عدد، يك كاراكتر و يك عدد ديگر را از كاربر دريافت نمايد و اگر كاراكتر يكي از عملگر‌هاي رياضي بود، عملگر را بر روی دو عدد ورودي اعمال و نتيجه‌ را در خروجي نمايش دهد. </a
+        >
+        </div>
+        </div>
+      </div>
+
+      <h4 id="1" class="ui right aligned attached header">
+        <span class="custom-font"> سوال1 </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include  &lt;stdio.h&gt; 
+            #include &lt;stdlib.h&gt;
+            #include &lt;time.h&gt;
+            
+            size_t even_counter,odd_counter;
+            
+            void Input_array(int x[],int Len)
+            {
+              register int i;
+              
+              for(i=0 ; i &lt; Len ; i++){
+                printf("element[%d] : ",i);
+                scanf("%d",&x[i]);
+              }  
+               
+              return;  
+            }
+            
+            void print_array(int x[],int Len)
+            {
+              register int i;
+              
+              for(i=0 ; i &lt; Len ; i++){
+                printf("%d ,",x[i]);
+              }  
+               
+              return;  
+            }
+            
+            void Input_Random(int x[],int Len)
+            {
+              srand(time(NULL));
+              
+              for(register int i=0 ; i &lt; Len ; i++){
+                x[i] = 100 + rand()%101;
+              }  
+               
+              return;  
+            }
+            
+            
+            void Even_odd_array01(int x[],int Len)
+            {
+              register size_t i,Odd,Even;
+              int Odd_array[Len], Even_array[Len];
+              
+              Odd = Even = 0; //Initialize counter
+              for( i = 0 ; i &lt; Len ;i++){
+                if(x[i]%2 == 0)  
+                     Even_array[Even++] = x[i];
+                  else
+                     Odd_array[Odd++]   = x[i];
+              }
+              
+              puts("\n\nthe elements of even array are :");
+              print_array(Even_array,Even);
+              puts("\n\nthe elements of odd array are :");
+              print_array(Odd_array,Odd);
+              
+              return;
+            }
+            
+            void Even_odd_array02(int x[],int Even[],int Odd[],int Len)
+            {
+              register size_t i;
+              int Odd_array[Len], Even_array[Len];
+              
+              even_counter = odd_counter = 0; //Initialize counter
+              for( i = 0 ; i &lt; Len ;i++){
+                if(x[i]%2 == 0)  
+                     Even[even_counter++] = x[i];
+                  else
+                     Odd[odd_counter++]   = x[i];
+              }
+              
+              return;
+            }
+            
+            int main ()
+            {
+              size_t n,i,Odd,Even;
+              
+              printf("Enter a size of array :");
+              scanf("%u",&n);
+              
+              int MY_array[n],
+                  Odd_array[n],
+                  Even_array[n];
+              
+              //Input_array(MY_array,n);
+              Input_Random(MY_array,n);
+              
+              puts("\n\nthe elements of Orginal array are :");
+              print_array(MY_array,n);
+            
+                //Even_odd_array_01(MY_array,n);
+                
+                Even_odd_array02(MY_array,Even_array,Odd_array,n);
+                
+                puts("\n\nthe elements of even array are :");
+              print_array(Even_array,even_counter);
+              
+              puts("\n\nthe elements of odd array are :");
+              print_array(Odd_array,odd_counter);
+              
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="2" class="ui right aligned attached header">
+        <span class="custom-font"> سوال 2</span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+            
+            #define array_size 5
+            
+            void Input_Matrix(int x[][array_size],int Len)
+            {
+              register int i,j;
+              
+              for(i=0 ; i &lt; Len ; i++){
+                for(j=0 ; j &lt; array_size ; j++){
+                    printf("element [%d][%d] : ",i,j);
+                     scanf("%d",&x[i][j]);
+                  }//end of for j
+                  printf("\n");
+              } //end of for i
+               
+              return;  
+            }
+            
+            void print_Matrix(int x[array_size][array_size])
+            {
+                register int i,j;
+              
+              for(i=0 ; i &lt; array_size ; i++){
+                for(j=0 ; j &lt; array_size ; j++){
+                    printf("%3d",x[i][j]);
+                  }//end of for j
+                  printf("\n");
+              } //end of for i
+               
+              return;    
+            }
+            
+            int IsSymmetric(int x[array_size][array_size])
+            {
+                register int i,j;
+              
+              for(i = 0 ; i &lt; array_size ; i++){
+                for(j = i ; j &lt; array_size ; j++){
+                    if(x[i][j]!=x[j][i])
+                       return 0;
+                  }//end of for j
+              } //end of for i
+               
+              return 1;   
+            }
+            
+            int main ()
+            {
+                int My_Matrix[array_size][array_size]  = {{0,2,5,6,7},
+                                                        {2,0,3,4,5},
+                                    {5,3,0,7,8},
+                                    {6,4,7,0,9},
+                                    {7,5,8,9,0}};
+                
+                Input_Matrix(My_Matrix,array_size);
+                print_Matrix(My_Matrix);
+                
+                if (IsSymmetric(My_Matrix))
+                    puts("\nThe above Matrix is a symmetric matrix.\n\n");
+                else
+                    puts("\nThe above Matrix is not a symmetric matrix.\n\n");
+                
+                system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="3" class="ui right aligned attached header">
+        <span class="custom-font">سوال 3 </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+            #include  &lt;stdlib.h&gt;
+            
+            #define row_size 5
+            #define col_size 3
+            
+            void Input_Matrix(int x[row_size][col_size])
+            {
+              register int i,j;
+              
+              for(i=0 ; i &lt; row_size ; i++){
+                for(j=0 ; j &lt; col_size ; j++){
+                    printf("element [%d][%d] : ",i,j);
+                     scanf("%d",&x[i][j]);
+                  }//end of for j
+                  printf("\n");
+              } //end of for i
+               
+              return;  
+            }
+            
+            void print_Matrix(int x[row_size][col_size])
+            {
+                register int i,j;
+              
+              for(i=0 ; i &lt; row_size ; i++){
+                for(j=0 ; j &lt; col_size ; j++){
+                    printf("%3d",x[i][j]);
+                  }//end of for j
+                  printf("\n");
+              } //end of for i
+               
+              return;    
+            }
+            
+            
+            int main ()
+            {
+                register size_t i,j;
+                
+              int Min,x,y,My_Matrix[row_size][col_size];
+                
+                Input_Matrix(My_Matrix);
+                print_Matrix(My_Matrix);
+                
+                for(i = 0 ; i &lt; row_size ;i++){
+                  
+                  x = i;	y = 0;
+                  Min = My_Matrix[x][y]; // initialize min
+                  for(j = 1; j &lt; col_size ; j++){
+                    if(Min>My_Matrix[i][j]){
+                       Min = My_Matrix[i][j];
+                       x = i;
+                       y = j;
+                  }
+                       
+                }//end of for j
+                printf("\nThe Minimum of %d.th row is element[%d][%d] = %d.",i,x,y,Min);
+                  
+              }//end of for i
+                
+                
+                puts("");
+              system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="4" class="ui right aligned attached header">
+        <span class="custom-font"> سوال4  </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+            
+            #define row_size 4
+            #define col_size 2
+            
+            void Input_Matrix(int x[row_size][col_size])
+            {
+              register int i,j;
+              
+              for(i=0 ; i &lt; row_size ; i++){
+                for(j=0 ; j &lt; col_size ; j++){
+                    printf("element [%d][%d] : ",i,j);
+                     scanf("%d",&x[i][j]);
+                  }//end of for j
+                  printf("\n");
+              } //end of for i
+               
+              return;  
+            }
+            
+            void print_Matrix(int x[row_size][col_size])
+            {
+                register int i,j;
+              
+              for(i=0 ; i &lt; row_size ; i++){
+                for(j=0 ; j &lt; col_size ; j++){
+                    printf("%3d",x[i][j]);
+                  }//end of for j
+                  printf("\n");
+              } //end of for i
+               
+              return;    
+            }
+            
+            
+            int main ()
+            {
+                register size_t i,j;
+                
+              int Matrics_01[row_size][col_size],
+                  Matrics_02[row_size][col_size],
+                SUM_Matrics[row_size][col_size]={};
+                
+                puts("Enter elements of First Matric : ");
+                Input_Matrix(Matrics_01);
+                puts("Enter elements of Second Matric : ");
+                Input_Matrix(Matrics_02);
+                
+                puts("Elements of First Matric : ");
+                print_Matrix(Matrics_01);
+                puts("Elements of Second Matric : ");
+                print_Matrix(Matrics_02);
+                
+                for(i = 0 ; i &lt; row_size ;i++){
+                  for(j = 0 ; j &lt; col_size ; j++){
+                    SUM_Matrics[i][j] = Matrics_01[i][j] + Matrics_02[i][j];
+                }//end of for j
+              }//end of for i
+                
+                puts("Elements of sum of two Matrics : ");
+                print_Matrix(SUM_Matrics);
+                
+                puts("");
+              system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="5" class="ui right aligned attached header">
+        <span class="custom-font"> سوال 5</span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+            
+            int main ()
+            {
+                register size_t i,j,k;
+                
+              int First[4][2],
+                  Second[2][3],
+                Multiply[4][3]={};
+                
+                puts("Enter elements of first array:");
+                for(i=0;i<4;i++)
+                    for(j=0;j<2;j++) 
+                        scanf("%d",&First[i][j]);
+            
+                puts("Enter elements of second array:");            
+                for(i=0;i<2;i++)
+                    for(j=0;j<3;j++) 
+                        scanf("%d",&Second[i][j]);
+                        
+               for(i = 0; i < 4 ;i++){
+                    for(j = 0 ; j < 3 ; j++){
+                      
+                         Multiply[i][j]= 0;
+                         for(k = 0 ; k < 2 ; k++){
+                              Multiply[i][j]+= First[i][k]*Second[k][j];
+                   }//end of for k
+                         
+                 }//end of for j
+               }//end of for i
+                    
+                    
+                
+                puts("\n\nElements of first array:");
+                for(i=0;i<4;i++){
+                  for(j=0;j<2;j++) 	
+                        printf("%3d",First[i][j]);
+                    printf("\n");
+              }
+              
+              puts("\n\nElements of second array:");
+                for(i=0;i<2;i++){
+                  for(j=0;j<3;j++) 	
+                        printf("%3d",Second[i][j]);
+                    printf("\n");
+              }
+                   
+                puts("\n\nElements of Multiply array:");
+                for(i=0;i<4;i++){
+                  for(j=0;j<3;j++) 	
+                        printf("%3d",Multiply[i][j]);
+                    printf("\n");
+              }
+              
+                  
+              system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="6" class="ui right aligned attached header">
+        <span class="custom-font"> سوال 6 </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+            
+            #define ROW 5
+            #define COL 3
+            
+             void Input_array(int *array, int row, int col)
+             {
+               register size_t i,j;
+               
+               for(i = 0 ; i < row ; i++){
+                 for(j =0 ; j < col ; j++) {
+                   printf("\telement[%d][%d] : ", i,j);
+                   scanf("%d",(array + i*col + j)); //(array + i*col + j) address of array[i][j]
+                }//end of for j
+                printf("\n");
+                }//end of for i
+               
+               return;
+             }
+             
+             void print_array(int *array, int row, int col)
+             {
+               register size_t i,j;
+               
+               for(i = 0 ; i < row ; i++){
+                 for(j =0 ; j < col ; j++) {
+                   printf("%3d ", *(array + i*col + j) );//*(array + i*col + j) value of array[i][j]
+                }//end of for j
+                printf("\n");
+                }//end of for i
+               
+               return;
+             }
+            
+            int main ()
+            {
+                register size_t i,j,k;
+                
+              int Matrix[ROW][COL],
+                  Transpose_Matrix[COL][ROW];
+                
+                puts("Enter elements of Matrix:");
+                Input_array(Matrix[0],ROW,COL);
+                       
+                for(i = 0; i < ROW ;i++){
+                    for(j = 0 ; j < COL ; j++){
+                      
+                          Transpose_Matrix[j][i] = Matrix[i][j];
+                         
+                 }//end of for j
+                }//end of for i
+                    
+                puts("\n\nElements of Input Matrix:");
+                print_array(Matrix[0],ROW,COL);
+              
+              puts("\n\nElements of Transpose Matrix:");
+                print_array(Transpose_Matrix[0],COL,ROW);
+            
+                  
+              system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="7" class="ui right aligned attached header">
+        <span class="custom-font"> سوال 7 </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+            
+            #define ROW 7
+            #define COL 4
+            
+             void Input_array(int *array, int row, int col)
+             {
+               register size_t i,j;
+               
+               for(i = 0 ; i < row ; i++){
+                 for(j =0 ; j < col ; j++) {
+                   printf("\telement[%d][%d] : ", i,j);
+                   scanf("%d",(array + i*col + j)); //(array + i*col + j) address of array[i][j]
+                }//end of for j
+                printf("\n");
+                }//end of for i
+               
+               return;
+             }
+             
+             void print_array(int *array, int row, int col)
+             {
+               register size_t i,j;
+               
+               for(i = 0 ; i < row ; i++){
+                 for(j =0 ; j < col ; j++) {
+                   printf("%3d ", *(array + i*col + j) );//*(array + i*col + j) value of array[i][j]
+                }//end of for j
+                printf("\n");
+                }//end of for i
+               
+               return;
+             }
+            
+            void MaxElementIncolumn(int *array, int row, int col)
+            {
+              int Max;
+              size_t x,i,j;
+              
+              for(i = 0 ; i < col ; i++){	
+              
+                x = 0;
+                Max = *(array + i);   
+                for(j = 1 ; j < row ; j++) {
+                    if(Max < *(array + j*col + i)){  //*(array + j*col + i) value of array[j][i]
+                     Max = *(array + j*col + i);
+                     x = j;
+                    }// end of if
+                }//end of for j	
+                 printf("\n\tMaximum element in %d.th column is %3d in (index[%d][%d]). ",i,Max,x,i);
+                 
+                }//end of for i	
+            
+              return ;
+            }
+            
+            
+            int main ()
+            { 
+              int Matrix[ROW][COL]={{12,2,5,8},
+                                    {4,5,15,1},
+                          {8,88,5,7},
+                          {14,52,24,14},
+                          {14,50,40,24},
+                          {4,54,41,41},
+                          {6,2,4,114}};
+                
+                //puts("Enter elements of Matrix:");
+                //Input_array(Matrix[0],ROW,COL);
+                
+              
+              puts("\n\nElements of Input Matrix:");
+                print_array(Matrix[0],ROW,COL);
+                     
+                MaxElementIncolumn(Matrix[0],ROW,COL);
+                    
+                system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="8" class="ui right aligned attached header">
+        <span class="custom-font"> سوال 8</span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+            
+            #define ROW 4
+            #define COL 4
+            
+             void Input_array(int *array, int row, int col)
+             {
+               register size_t i,j;
+               
+               for(i = 0 ; i &lt; row ; i++){
+                 for(j =0 ; j &lt; col ; j++) {
+                   printf("\telement[%d][%d] : ", i,j);
+                   scanf("%d",(array + i*col + j)); //(array + i*col + j) address of array[i][j]
+                }//end of for j
+                printf("\n");
+                }//end of for i
+               
+               return;
+             }
+             
+             void print_array(int *array, int row, int col)
+             {
+               register size_t i,j;
+               
+               for(i = 0 ; i &lt; row ; i++){
+                 for(j =0 ; j &lt; col ; j++) {
+                   printf("%3d ", *(array + i*col + j) );//*(array + i*col + j) value of array[i][j]
+                }//end of for j
+                printf("\n");
+                }//end of for i
+               
+               return;
+             }
+            
+            int main ()
+            { 
+              register size_t i,j;
+              
+              int Matrix[ROW][COL]={{1,2,5,8},
+                                    {0,3,1,1},
+                          {0,0,4,7},
+                          {0,0,0,5}};
+                char flag = 1;
+                
+                //puts("Enter elements of Matrix:");
+                //Input_array(Matrix[0],ROW,COL);
+              
+              puts("\n\nElements of Input Matrix:");
+                print_array(Matrix[0],ROW,COL);
+                     
+                for(i = 0 ; i &lt; ROW && flag; i++)
+                    for(j = 0 ; j &lt; i && flag; j++)
+                        if(Matrix[i][j]!=0){
+                          flag = 0;
+                  }
+                           
+                if(flag)
+                  puts("\nAbove Matrix is The upper triangular matrix.\n\n");
+                else
+                  puts("\nAbove Matrix is not The upper triangular matrix.\n\n"); 
+                
+                    
+                system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="9" class="ui right aligned attached header">
+        <span class="custom-font"> سوال 9 </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+            
+            #define ROW 8
+            #define COL 8
+            
+            void print_array(int *array, int row, int col)
+             {
+               register size_t i,j;
+               
+               for(i = 0 ; i &lt; row ; i++){
+                 for(j =0 ; j &lt;= i ; j++) {
+                   printf("%3d ", *(array + i*col + j) );//*(array + i*col + j) value of array[i][j]
+                }//end of for j
+                printf("\n");
+                }//end of for i
+               
+               return;
+             }
+            
+            int main ()
+            { 
+              register size_t i,j;
+              
+              int Matrix[ROW][COL]={};
+                    
+              for(i = 0 ; i &lt; ROW; i++)
+                    for(j = 0 ; j &lt;= i; j++)
+                        if(j==0||i==j){
+                          Matrix[i][j]=1;
+                  }
+                  else{
+                     Matrix[i][j] = Matrix[i-1][j] + Matrix[i-1][j-1];
+                  }
+                  
+                print_array(Matrix[0],ROW,COL);
+                         
+                system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4
+        id="10"
+        class="ui right aligned attached header"
+      >
+        <span class="custom-font"> سوال10  </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+          #include &lt;stdlib.h&gt;
+            #include &lt;time.h&gt;
+            
+            #define array_Length 20
+            #define Base_random  5
+            
+            void input_array(int A[], int Len)
+             {
+               register size_t i;
+               
+               srand(time(NULL));
+               
+               for(i = 0 ; i &lt; Len ; i++){
+                 A[i] = rand()%Base_random;
+                }//end of for i
+               
+               return;
+             }
+            
+            void Most_Repeat(int A[], int len)
+            {
+                int MR_Value,      // Most Repeat Index
+                    MR_Index,      // Most Repeat Value
+                    Current_RValue;
+            
+                register int i, j;
+            
+                MR_Value = -1;
+                for ( i = 0 ; i &lt; len ; i ++){
+            
+                      Current_RValue = 0;
+                      for(j = 0 ; j &lt; len ; j++)
+                          if (A[i] == A[j])
+                              Current_RValue++;
+            
+                      if (Current_RValue &gt; MR_Value) {
+                          MR_Index = i;
+                          MR_Value = Current_RValue;
+                      }// end of if
+            
+                } // End of for ( i = 0 ...
+            
+                printf("\n\n &gt; The Most Repeat : Item[%d] = %d \n &gt; Repeat Value = %d\n\n",
+                        MR_Index,A[MR_Index],MR_Value);
+            
+                return;
+            }
+            
+            void Frequency_Repeat(int A[], int len)
+            {
+                int frequency[Base_random] = {};     
+                register int i,j;
+              
+                
+                for (i = 0 ; i &lt; len ; i++)
+                    ++frequency[A[i]];
+                
+                printf("\n\n%8s%10s%12s","Value","Repeat","Histogram");
+                for(i = 0 ; i &lt; Base_random ; i++){
+                  
+                  printf("\n%8d%10d    ",i,frequency[i]); 
+                  
+                    for(j=0 ; j &lt; frequency[i] ; ++j)    
+                        printf("%c",'*');
+              }
+                    
+                return;
+            }
+            
+            
+            int main ()
+            { 
+              register size_t i;
+              int array[array_Length]={};
+                
+              input_array(array,array_Length);
+               
+              printf("%17s%10s","Element Number","Value");
+              for(i = 0 ; i &lt; array_Length ; i++) 		
+                  printf("\n\tItem[%2d]\t%3d",i,array[i]);
+                
+                Most_Repeat(array,array_Length);
+              Frequency_Repeat(array,array_Length);
+              
+                      
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="11" class="ui right aligned attached header">
+        <span class="custom-font"> سوال 11 </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+            #include &lt;time.h&gt;
+            
+            #define array_length  10
+            
+            void Input_Array(int A[],int len);
+            void Bubble_Sort(int A[], int len);
+            
+            int main()
+            {
+                int array[array_length];
+            
+                Input_Array(array, array_length);
+            
+                printf("\n\n ------- The array items before Sort --------\n\n");
+                for(int i = 0 ; i &lt; array_length ; i++)
+                     printf("\t Item[%2d] \t %3d\n", i , array[i]);
+            
+                Bubble_Sort(array, array_length);
+            
+                printf("\n\n ------- The array items after Sort --------\n\n");
+                for(int i = 0 ; i &lt; array_length ; i++)
+                     printf("\t Item[%2d] \t %3d\n", i , array[i]);
+            
+                system("PAUSE");
+                return 0;
+            }
+            
+            void Input_Array(int A[],int len)
+            {
+              srand(time(NULL));
+              for(int i = 0 ; i &lt; len ; i++)
+                  A[i] = 1 + rand() % array_length;
+            
+              return;
+            }
+            
+            void Bubble_Sort(int A[], int len)
+            {
+              register int i, j, temp;
+            
+              for (i = 1 ; i &lt; len ; i++)
+                  for (j = 0; j &lt; len - i ; j++)
+                       if (A[j] &lt; A[j+1]){ //Descending Sort
+                           temp = A[j];
+                           A[j] = A[j+1];
+                           A[j+1] = temp;
+                         }
+             return;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="12" class="ui right aligned attached header">
+        <span class="custom-font"> سوال 12 : </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+        
+  #include &lt;stdio.h&gt;
+  #include &lt;stdlib.h&gt;
+  
+  #define array_length  10
+  
+  void Merge_Array(int A[], int B[], int C[], int len);
+  
+  int main()
+  {
+      int A[array_length] = { 11, 12, 15, 17, 18, 19, 25, 28, 30, 35},
+          B[array_length] = { 10, 17, 26, 27, 29, 30, 35, 40, 41, 50};
+  
+      int C[(2*array_length)];
+  
+      register int i;
+  
+      Merge_Array(A, B, C, array_length);
+  
+      for(i = 0 ; i &lt; 2*array_length ; i++)
+      {
+          printf("\t C[%2d] = %3d", i, C[i]);
+  
+          if ((i+1) % 3 == 0)
+              printf("\n");
+      }
+  
+      //system("PAUSE");
+      return 0;
+  }
+  
+  void Merge_Array(int A[], int B[], int C[], int len)
+  {
+      register int i, j, k;
+  
+      i = j = k = 0;
+  
+      while( i  &lt; len && j &lt; len ){
+          if ( A[i] &gt; B[j] )
+              C[k++] = B[j++];
+          else
+              C[k++] = A[i++];
+      }
+  
+      while (i &lt; len){
+             C[k++] = A[i++];
+      }
+  
+      while (j &lt; len){
+             C[k++] = B[j++];
+      }
+  
+      return;
+  }
+  
+        </code>
+      </pre>
+      </div>
+
+      <h4
+        id="13"
+        class="ui right aligned attached header"
+      >
+        <span class="custom-font"> سوال 13</span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+         
+  #include &lt;stdio.h&gt;
+  #include&lt;stdio.h&gt;
+    int main()
+    {
+    
+        int row, col;;
+        printf("please enter width size: ");
+        scanf("%d", &row);
+    
+        printf("your withe size = %d\n", row);
+    
+        printf("please enter height size: ");
+        scanf("%d", &col);
+        printf("your height size = %d\n", col);
+    
+        int i,j;
+    
+        for(i=0; i&lt;row; i=i+1)
+        {
+            for(j=0; j&lt;col; j=j+1)
+            {
+                printf("*");
+            };
+            printf("\n");
+        };
+    
+        return 0;
+    }
+    
+        </code>
+      </pre>
+      </div>
+      <h4
+        id="14"
+        class="ui right aligned attached header"
+      >
+        <span class="custom-font"> سوال 14  </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+         
+            int main()
+            {
+             int i, j;
+             for (i=1; i&lt;=10; i++)
+             {
+             printf("\n");
+             for(j=1; j&lt;=10; j++)
+             printf("%3d ", i*j);
+             }
+            }
+        </code>
+      </pre>
+      </div>
+
+      <h4
+        id="15"
+        class="ui right aligned attached header"
+      >
+        <span class="custom-font">
+          سوال 15
+        </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+          #include &lt;conio.h&gt;
+            
+            int main()
+            {
+                int n=100,Fact=1,i=1;
+                while(i &lt;=n)
+                {
+                  Fact=Fact*i;
+                  i++;
+                   printf("%d!=%d\n",i,Fact);
+                }
+            
+                return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+  
+
+      <h4 id="16" class="ui right aligned attached header">
+        <span class="custom-font"> سوال 16 </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+              #include &lt;stdio.h&gt;
+              #include &lt;stdlib.h&gt;
+            
+            unsigned long long int Fib (int n)
+            { // 1  1	2	3	5	8	13	21	34	...
+              if (n==1 || n==2)
+                  return (1);
+              else
+                  return (Fib(n-1)+Fib(n-2));
+            }
+            
+            int main()
+            {
+              int num;
+              
+              printf("Enter a number: ");
+              scanf("%d",&num);
+              
+              printf("\n Fib(%d) = %llu\n\n",num,Fib(num));
+              
+              system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="17" class="ui right aligned attached header">
+        <span class="custom-font">
+          سوال 17
+        </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+          #include &lt;stdlib.h&gt;
+            
+            unsigned long long int Fact (int n)
+            { 
+              unsigned long long int F = 1;
+              while(n&gt;1){
+                  F*=n;
+                  n--;
+              }
+              
+              return F;
+            }
+            
+            unsigned int Combination(int C,int r)
+            {
+              return(Fact(C)/(Fact(r)*Fact(C-r)));
+            }
+            
+            int main()
+            {
+              int num;
+              
+              printf("Enter a number: ");
+              scanf("%d",&num);
+              
+              for (size_t c = 0; c&lt;=num ; c++){
+                
+                for (size_t r = 0 ; r&lt;=c ; r++){
+                     printf("%5u",Combination(c,r))	;
+                }//end of for r (Internal Loop)
+                
+                printf("\n");
+                
+              }//end of for c (External Loop)
+              
+              system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="18" class="ui right aligned attached header">
+        <span class="custom-font"> سوال 18 </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+          #include &lt;stdlib.h&gt;
+            
+            void MyProc(float a, float b, float c, float *sum, float *Mul, float *AVG)
+            { 
+               *sum = a+b+c;
+               *AVG = *sum/3;
+               *Mul = a*b*c;
+                  
+               return ;
+            }
+            
+            
+            int main()
+            {
+              float x,y,z,w1,w2,w3;
+              
+              printf("Enter three numbers: ");
+              scanf("%f%f%f",&x,&y,&z);
+              
+              MyProc(x,y,z,&w1,&w2,&w3);
+              printf("\nSUM = %f \t Mul = %f \t AVG = %f \n\n",w1,w2,w3);
+              
+              system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4
+        id="19"
+        class="ui right aligned attached header"
+      >
+        <span class="custom-font"> سوال 19</span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+          #include &lt;stdlib.h&gt;
+          #include  &lt;conio.h&gt;
+            
+            int main()
+            {
+              char ch;
+              
+              do{
+                system("CLS");         // CLear Screen
+                puts("1- Menu One.");
+                puts("2- Menu Two.");
+                puts("3- Menu Three.");
+                puts("4- Menu Four.");
+                puts("5- Menu Five.");
+                puts("6- Exit.");
+                puts("____________________");
+                printf("> Entered Selected: ");
+                ch = getchar();
+                fflush(stdin);        // Clear buffer "stdin" = Flush stdin
+                
+                switch(ch){
+                  case '1':
+                          puts("\nYou are selected One.\n\n");
+                          break;
+                  case '2':
+                          puts("\nYou are selected TWO.\n\n");
+                          break;
+                  case '3':
+                          puts("\nYou are selected Three.\n\n");
+                          break;
+                  case '4':
+                          puts("\nYou are selected Four.\n\n");
+                          break;
+                  case '5':
+                          puts("\nYou are selected Five.\n\n");
+                          break;
+                  case '6':
+                          puts("\nExit.\n\n");
+                          break;
+                          
+                    case '\n': // ignore newlines,
+                        case '\t': // tabs,
+                        case ' ' : break; // and spaces in input
+                        
+                  default:  
+                          puts("ERROR! Enter 1~5.\n\n");
+                          break;
+                }//end of switch(ch)
+                system("PAUSE");
+              }while(ch!='6');
+              
+              system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="20" class="ui right aligned attached header">
+        <span class="custom-font"> سوال20 </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;stdio.h&gt;
+          #include &lt;stdlib.h&gt;
+            
+            int main()
+            {
+              int n;
+              
+              printf("Enter a number:");
+              scanf("%d",&n);
+              
+              if (n%2==0 && n&gt;0 && n&lt;100)
+                  puts("Smile");
+              else 
+               {
+                 //printf("\n%d\n",n%2);
+                 if (n%2!=0 && n&lt;0 && n &gt; -50)
+                        puts("Frown");
+                    else
+                        puts("Not Bad");
+                 }
+              
+              system("PAUSE");
+              return 0;
+            }
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="21" class="ui right aligned attached header">
+        <span class="custom-font"> سوال21 </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+          #include &lt;math.h&gt;
+          #include &lt;string.h&gt;
+          #include &lt;stdio.h&gt;
+          #include &lt;stdlib.h&gt;
+            
+            int main()
+            {
+              int a,b,c,Delta;
+              float x1,x2;
+              
+              printf("Enter three numbers (ax^2+bx+c=0):");
+              scanf("%d%d%d",&a,&b,&c);
+              
+              printf("\n%dx^2+%dx+%d=0 \n",a,b,c);
+              
+              Delta = b*b - 4*a*c;
+              
+              if (Delta&lt;0)
+                  puts("Not root in Real number.");
+              else
+                  {
+                    
+                  if (Delta==0)
+                       x1 = x2 = -b/(2*a);
+                    else{
+                         x1 = (-b + sqrt(Delta))/(2*a);
+                         x2 = (-b - sqrt(Delta))/(2*a);
+                  }//end of else if (Delta==0)
+                  
+                  printf("x1 = %.2f\nx2 = %.2f\n\n",x1,x2);
+                  
+                }// end of else if (Delta&lt;0)
+            
+              
+              system("PAUSE");
+              return 0;
+            }
+            
+            
+        </code>
+      </pre>
+      </div>
+
+      <h4 id="22" class="ui right aligned attached header">
+        <span class="custom-font"> سوال 22 </span>
+      </h4>
+      <div class="ui attached code segment">
+        <pre>
+        <code class="C++ hljs objectivec">
+         
+           
+            #include &lt;conio.h&gt;
+            #include &lt;math.h&gt;
+            #include &lt;stdio.h&gt;
+            #include &lt;stdlib.h&gt;
+            int main()
+            {
+              int a,b;
+              char op;
+            
+              printf("\nEnter a number:");
+              scanf("%d",&a);
+              fflush(stdin);
+            
+              printf("Enter an Opertor:");
+              op = getchar();
+            
+              printf("Enter a number:");
+              scanf("%d",&b);
+            
+              switch(op)
+              {
+                case '+':
+                       printf("\n%d+%d=%d\n",a,b,a+b);
+                       break;
+                case '-':
+                       printf("\n%d-%d=%d\n",a,b,a-b);
+                       break;
+                case '*':
+                       printf("\n%d*%d=%d\n",a,b,a*b);
+                       break;
+                case '/':
+                       if(b!=0)
+                        printf("\n%d/%d=%f\n",a,b,(float)a/b);
+                     else
+                        puts("Error! a/0.");
+                       break;
+                case '%':
+                       printf("\n%d%%d=%d\n",a,b,a%b);
+                       break;
+            
+                default: puts("Error! Enter Correct Operator (+,-,*,/,%).");
+              }
+            
+              system("PAUSE");
+              return 0;
+            }
+            
+            
+            
+        </code>
+      </pre>
+      </div>
+
+    
+      <h4
+        class="ui bottom attached center aligned header"
+        style="border-radius: 0px"
+      >
+        <a href="http://mahdavipanah.com" target="_blank">
+          <span class="custom-font">سحر میرزابیگی</span>
+        </a>
+      </h4>
+    </div>
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      );
+
+      ga("create", "UA-58510559-1", "auto");
+      ga("send", "pageview");
+    </script>
+  </body>
+</html>
